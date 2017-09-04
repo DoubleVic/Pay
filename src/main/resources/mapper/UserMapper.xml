@@ -7,47 +7,25 @@
 		<id column="id" property="id" />
 		<result column="user_name" property="userName" />
 		<result column="password" property="password" />
-		<result column="phone_number" property="phoneNumber" />
-		<result column="email" property="email" />
 		<result column="create_time" property="createTime" />
 		<result column="update_time" property="updateTime" />
-		<result column="can_create_group" property="canCreateGroup" />
-		<result column="account_type" property="accountType" />
-		<result column="account_state" property="accountState" />
-		<result column="token" property="token" />
-		<result column="roleId" property="roleId" />
-		<result column="role_key" property="roleKey" />
-		<result column="freeze_reason" property="freezeReason" />
-		<result column="access_level" property="proPerssion" />
-		<result column="role_name" property="roleName" />
 	</resultMap>
-	<!-- 关联结果集 -->
-	<!--<resultMap type="com.cn.pay.dao.entity.User" id="myUserResult" extends="baseResultMap">-->
-		<!--<collection property="group" javaType="list" ofType="com.cn.pay..dao.entity.Group">-->
-			<!--<id column="groupId" property="id"/>-->
-			<!--<result column="group_name"  property="groupName"/>-->
-		<!--</collection>-->
-		<!--<collection property="role" javaType="list" ofType="com.cn.pay..dao.entity.Role">-->
-			<!--<id column="rid" property="id"/>-->
-			<!--<result column="role_name"  property="roleName"/>-->
-			<!--<result column="create_time"  property="createTime"/>-->
-			<!--<result column="update_time"  property="updateTime"/>-->
-			<!--<result column="description"  property="description"/>-->
-		<!--</collection>-->
-		<!--<collection property="project" javaType="list" ofType="com.migu.cms.dao.entity.Project">-->
-			<!--<id column="pid" property="id"/>-->
-			<!--<result column="project_name"  property="projectName"/>-->
-			<!--<result column="groupName"  property="groupName"/>-->
-		<!--</collection>-->
-	<!--</resultMap>-->
-	<!-- 基本信息 -->
 
 	<!-- 新增 -->
 	<insert id="save" parameterType="com.cn.pay.dao.entity.User" useGeneratedKeys="true" keyProperty="id">
-
+		INSERT INTO users
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userName != null and userName != ''">user_name,</if>
+			<if test="password != null and password != ''">password,</if>
+			<if test="createTime != null and createTime != ''">create_time,</if>
+			<if test="updateTime != null and updateTime != ''">update_time,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userName != null and userName != ''">#{userName},</if>
+			<if test="password != null and password != ''">#{password},</if>
+			<if test="createTime != null and createTime != ''">#{createTime},</if>
+			<if test="updateTime != null and updateTime != ''">#{updateTime},</if>
+		</trim>
 	</insert>
-
-
-
 
 </mapper>

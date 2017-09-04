@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javax.annotation.Resource;
 
+import com.cn.pay.common.ResultCode;
 import com.cn.pay.dao.entity.User;
 import com.cn.pay.dao.inf.IUserDao;
 import com.cn.pay.srevice.inf.IUserService;
@@ -11,6 +12,7 @@ import com.cn.pay.utils.AjaxResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -33,8 +35,12 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
 		return null;
 	}
 
+	@Transactional
 	public AjaxResult createUser(User user) throws Exception {
-		return null;
+		AjaxResult ajaxResult = null;
+        userDao.save(user);
+        ajaxResult = new AjaxResult(true, ResultCode.SUCCESS);
+		return ajaxResult;
 	}
 
 	public User getByname(HashMap<String, Object> map) throws Exception {
