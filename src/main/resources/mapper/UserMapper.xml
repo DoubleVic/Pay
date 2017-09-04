@@ -11,9 +11,16 @@
 		<result column="update_time" property="updateTime" />
 	</resultMap>
 
+	<sql id="comm_sql1">
+		u.id,u.user_name,u.password,u.create_time,u.update_time
+	</sql>
+	<sql id="whereSqlmap">
+		<if test="userName != null and userName != ''">and u.user_name = #{userName}</if>
+		<if test="id != null and id != ''">and u.id = #{id}</if>
+	</sql>
 	<!-- 新增 -->
 	<insert id="save" parameterType="com.cn.pay.dao.entity.User" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO users
+		INSERT INTO user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="userName != null and userName != ''">user_name,</if>
 			<if test="password != null and password != ''">password,</if>
@@ -28,4 +35,21 @@
 		</trim>
 	</insert>
 
+	<!--单独查询-->
+	<select id="getById" parameterType="com.cn.pay.dao.entity.User" resultMap="baseResultMap">
+		SELECT
+		<include refid="comm_sql1" />
+		FROM user u
+		WHERE u.id = #{id}
+	</select>
+
+	<!--联合查询-->
+	<select id="getByWhere" parameterType="map" resultMap="baseResultMap">
+		SELECT
+		<include refid="comm_sql1" />
+		FROM user u
+		<where>
+			<include refid="whereSqlmap"></include>
+		</where>
+	</select>
 </mapper>

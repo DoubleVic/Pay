@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Dev:war exploded">
+  <artifact type="exploded-war" build-on-make="true" name="Dev:war exploded">
     <output-path>$PROJECT_DIR$/target/Dev</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
@@ -7,6 +7,7 @@
           <element id="module-output" name="Dev" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.0" />
           <element id="library" level="project" name="Maven: javax.mail:mail:1.4.7" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: org.apache.activemq:activemq-all:5.14.4" />
