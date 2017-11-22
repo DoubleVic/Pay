@@ -24,9 +24,6 @@ public interface IUserDao<User> extends IBaseDao<User> {
     // 根据id删除 用户_角色中间表
     void deleteRoleUser(Long userId);
 
-    // 用户登录
-    User login(HashMap<String, Object> map);
-
     // 获取用户单一信息,不包含角色
     User getByUserId(Long userId);
 

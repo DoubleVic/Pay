@@ -44,7 +44,7 @@
 
 	<!-- 新增 -->
 	<insert id="save" parameterType="com.cn.pay.dao.entity.User" useGeneratedKeys="true" keyProperty="id">
-
+			INSERT
 	</insert>
 
 
